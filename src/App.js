@@ -1,24 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import Layout from "./components/Layout";
+import React, { useState } from "react";
 
 function App() {
+  const [taskName, setTaskName] = useState("");
+  const [tasks, setTasks] = useState([]);
+  const [columns, setColumns] = useState([]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main className="App-Container">
+      <Layout
+        tasks={tasks}
+        setTasks={setTasks}
+        taskName={taskName}
+        setTaskName={setTaskName}
+        columns={columns}
+        setColumns={setColumns}
+      />
+    </main>
   );
 }
 
