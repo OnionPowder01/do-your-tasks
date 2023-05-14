@@ -10,34 +10,51 @@
 body {
   background-color: #30374b;
   color: #eee;
-  padding-bottom: 50px;
 }
 
 main {
-  padding-top: 50px;
   margin: 0 auto;
   text-align: center;
   display: flex;
+  width: 100%;
+  padding-top: 10px;
 }
+
 /* layout */
 .layout-container {
-  height: 100vh;
   width: 100%;
 }
 
-/* Task main container */
-/* .task-main-container {
-  width: 100%;
-  margin-top: 130-;
-} */
+/* tasks */
 .tasks-container {
   display: flex;
   justify-content: space-around;
-  width: 90%;
   padding: 20px;
 }
 
-/* Add Task Drawer */
-.handle-add-task-button {
+/* Mantine Drawer */
+.add-task-button-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   margin-top: 10px;
+  gap: 10px;
+}
+
+.mantine-TextInput-label {
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.mantine-Modal-inner {
+  padding-left: 0;
+  padding-right: 0;
+  display: flex;
+  align-items: center;
+}
+@media screen and (max-width: 600px) {
+  .mantine-Modal-inner {
+    width: 90%;
+    margin-left: 10px;
+  }
 }

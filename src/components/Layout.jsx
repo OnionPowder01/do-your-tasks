@@ -25,7 +25,12 @@ const Layout = ({
           />
         </div>
         <div className="tasks-main-container">
-          <Tasks columns={columns} setColumns={setColumns} tasks={tasks} />
+          <Tasks
+            columns={columns}
+            setColumns={setColumns}
+            tasks={tasks}
+            setTasks={setTasks}
+          />
         </div>
       </div>
     </>

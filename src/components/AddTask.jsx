@@ -18,7 +18,7 @@ const AddTask = ({ taskName, setTaskName, setTasks, tasks }) => {
 
   return (
     <>
-      <Modal opened={opened} onClose={close} title="Add your task">
+      <Modal opened={opened} onClose={close} withCloseButton={false}>
         <TextInput
           label="Task Name"
           placeholder="What are your working on ?"
@@ -28,13 +28,18 @@ const AddTask = ({ taskName, setTaskName, setTasks, tasks }) => {
           onChange={handleInputChange}
           withAsterisk
         />
-        <Button
-          className="handle-add-task-button"
-          color="dark"
-          onClick={handleAddTask}
-        >
-          Add Task
-        </Button>
+        <div className="add-task-button-container">
+          <Button color="dark" variant="subtle" onClick={() => close()}>
+            Cancel
+          </Button>
+          <Button
+            className="handle-add-task-button"
+            color="dark"
+            onClick={handleAddTask}
+          >
+            Add Task
+          </Button>
+        </div>
       </Modal>
 
       <Group position="center">
