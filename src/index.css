@@ -1,6 +1,7 @@
 :root {
   --red: #f54e4e;
   --green: #4aec8c;
+  --backgroundColor: #30374b;
 }
 
 * {
@@ -8,7 +9,7 @@
 }
 
 body {
-  background-color: #30374b;
+  background-color: var(--backgroundColor);
   color: #eee;
 }
 
@@ -25,14 +26,47 @@ main {
   width: 100%;
 }
 
+/* tasks-columns */
+.tasks-columns {
+  background: var(--backgroundColor);
+  padding: 10px;
+  height: 100%;
+  width: 100%;
+}
+@media screen and (max-width: 600px) {
+  .tasks-columns {
+    width: 80%;
+  }
+}
+.columns-items-container {
+  border: 1px;
+  border-radius: 10px;
+  border-style: dashed;
+  margin-top: 10px;
+  padding: 16px;
+  user-select: none;
+}
+
 /* tasks */
 .tasks-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 15rem;
   padding: 20px;
 }
+@media screen and (max-width: 600px) {
+  .tasks-container {
+    gap: 2rem;
+  }
+}
 
-/* Mantine Drawer */
+.task-name-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+/* Add task mantine drawer */
 .add-task-button-container {
   display: flex;
   justify-content: flex-end;
