@@ -1,20 +1,32 @@
-import React from "react";
-import { v4 as uuidv4 } from "uuid";
+import React, { useState } from "react";
 import { Modal, Button, Group, TextInput } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
 
-const AddTask = ({ taskName, setTaskName, setTasks, tasks }) => {
-  const [opened, { open, close }] = useDisclosure(false);
-
+const UpdateTask = ({
+  tasks,
+  taskName,
+  setTaskName,
+  setTasks,
+  itemId,
+  opened,
+  close,
+}) => {
   const handleInputChange = (event) => {
     setTaskName(event.target.value);
   };
 
-  const handleAddTasks = () => {
-    const newTask = { id: uuidv4(), content: taskName, finished: false };
-    setTasks([...tasks, newTask]);
-    setTaskName("");
+  const handleUpdateTasks = () => {
+    const updatedTasks = tasks.map((task) => {
+      if (itemId === task.id) {
+        console.log(itemId);
+        return { ...task, content: taskName };
+      }
+      return task;
+    });
+    console.log(itemId);
+
+    setTasks(updatedTasks);
     close();
+    setTaskName("");
   };
 
   return (
@@ -30,23 +42,20 @@ const AddTask = ({ taskName, setTaskName, setTasks, tasks }) => {
           withAsterisk
         />
         <div className="add-task-button-container">
-          <Button color="dark" variant="subtle" onClick={() => close()}>
+          <Button color="dark" variant="subtle" onClick={close}>
             Cancel
           </Button>
           <Button
             className="handle-add-task-button"
             color="dark"
-            onClick={handleAddTasks}
+            onClick={handleUpdateTasks}
           >
-            Add task
+            Edit Task
           </Button>
         </div>
       </Modal>
-      <Group position="center">
-        <Button onClick={() => open()}>Add Task</Button>
-      </Group>
     </>
   );
 };
 
-export default AddTask;
+export default UpdateTask;

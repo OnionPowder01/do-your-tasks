@@ -92,3 +92,10 @@ main {
     margin-left: 10px;
   }
 }
+
+/* Task Buttons */
+
+.task-buttons-container {
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,9 +1,20 @@
-import React, { useEffect } from "react";
-import { Button } from "@mantine/core";
+import React, { useEffect, useState } from "react";
+import { useDisclosure } from "@mantine/hooks";
 import { v4 as uuidv4 } from "uuid";
-import { handleToggleFinished } from "../helpers/handleToggleFinished";
+import TaskCard from "./TaskCard";
+import AddTask from "./AddTask";
 
-const Tasks = ({ columns, setColumns, tasks, setTasks }) => {
+const Tasks = ({
+  columns,
+  setColumns,
+  tasks,
+  setTasks,
+  taskName,
+  setTaskName,
+}) => {
+  const [opened, { open, close }] = useDisclosure(false);
+  const [itemId, setItemId] = useState("");
+
   const initialColumns = {
     [uuidv4()]: {
       name: "Tasks to Complete",
@@ -23,45 +34,49 @@ const Tasks = ({ columns, setColumns, tasks, setTasks }) => {
   }, [tasks]);
 
   return (
-    <div className="tasks-container">
-      {Object.entries(columns).map(([id, column]) => {
-        const customTaskColor = column.finished ? "#4aec8c" : "#f54e4e";
-
-        return (
-          <div key={id}>
-            <p style={{ color: customTaskColor }}>
-              {tasks.length > 0 ? column.name : ""}
-            </p>
-            <div className="tasks-columns" style={{}}>
-              {column.items.map((item, index) => {
-                return (
-                  <div
-                    className="columns-items-container"
-                    key={item.id}
-                    style={{
-                      color: customTaskColor,
-                      borderColor: customTaskColor,
-                      textDecoration: item.finished ? "line-through" : "none",
-                    }}
-                  >
-                    <div className="task-name-container">{item.content}</div>
-
-                    <Button
-                      onClick={() =>
-                        handleToggleFinished(item.id, setTasks, tasks)
-                      }
-                      color={item.finished ? "green" : "red"}
-                    >
-                      {item.finished ? "Finished" : "Not Finished"}
-                    </Button>
-                  </div>
-                );
-              })}
+    <>
+      <AddTask
+        taskName={taskName}
+        setTaskName={setTaskName}
+        tasks={tasks}
+        setTasks={setTasks}
+        columns={columns}
+        setColumns={setColumns}
+      />
+      <div className="tasks-container" key={uuidv4()}>
+        {Object.entries(columns).map(([id, column]) => {
+          const customTaskColor = column.finished ? "#4aec8c" : "#f54e4e";
+          return (
+            <div key={id}>
+              <p style={{ color: customTaskColor }}>
+                {tasks.length > 0 ? column.name : ""}
+              </p>
+              <div className="tasks-columns" style={{}}>
+                {column.items.map((item, index) => {
+                  return (
+                    <>
+                      <TaskCard
+                        tasks={tasks}
+                        setTasks={setTasks}
+                        item={item}
+                        customTaskColor={customTaskColor}
+                        taskName={taskName}
+                        setTaskName={setTaskName}
+                        opened={opened}
+                        open={open}
+                        close={close}
+                        itemId={itemId}
+                        setItemId={setItemId}
+                      />
+                    </>
+                  );
+                })}
+              </div>
             </div>
-          </div>
-        );
-      })}
-    </div>
+          );
+        })}
+      </div>
+    </>
   );
 };
 
