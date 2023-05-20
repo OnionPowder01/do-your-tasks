@@ -9,8 +9,8 @@
 }
 
 body {
-  background-color: var(--backgroundColor);
   color: #eee;
+  background-color: var(--backgroundColor);
 }
 
 main {
@@ -21,11 +21,16 @@ main {
   padding-top: 10px;
 }
 
-/* layout */
-.layout-container {
-  width: 100%;
+/* add-task-button */
+.add-task-button {
+  width: 20%;
+  margin-top: 10px;
 }
-
+@media screen and (max-width: 600px) {
+  .add-task-button {
+    width: 50%;
+  }
+}
 /* tasks-columns */
 .tasks-columns {
   background: var(--backgroundColor);
@@ -38,6 +43,7 @@ main {
     width: 80%;
   }
 }
+
 .columns-items-container {
   border: 1px;
   border-radius: 10px;
@@ -56,8 +62,22 @@ main {
 }
 @media screen and (max-width: 600px) {
   .tasks-container {
-    gap: 2rem;
+    gap: 1rem;
+    flex-direction: column;
   }
+}
+
+@media screen and (max-width: 600px) {
+  .tasks-columns {
+    width: 90%;
+  }
+}
+
+.tasks-column-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .task-name-container {
@@ -98,4 +118,5 @@ main {
 .task-buttons-container {
   display: flex;
   justify-content: space-between;
+  color: #eee;
 }

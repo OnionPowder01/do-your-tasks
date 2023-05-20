@@ -3,6 +3,7 @@ import { useDisclosure } from "@mantine/hooks";
 import { v4 as uuidv4 } from "uuid";
 import TaskCard from "./TaskCard";
 import AddTask from "./AddTask";
+import { Button } from "@mantine/core";
 
 const Tasks = ({
   columns,
@@ -47,8 +48,14 @@ const Tasks = ({
         {Object.entries(columns).map(([id, column]) => {
           const customTaskColor = column.finished ? "#4aec8c" : "#f54e4e";
           return (
-            <div key={id}>
-              <p style={{ color: customTaskColor }}>
+            <div key={id} className="tasks-column-container">
+              <p
+                style={{
+                  color: customTaskColor,
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
                 {tasks.length > 0 ? column.name : ""}
               </p>
               <div className="tasks-columns" style={{}}>

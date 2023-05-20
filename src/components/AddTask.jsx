@@ -43,7 +43,9 @@ const AddTask = ({ taskName, setTaskName, setTasks, tasks }) => {
         </div>
       </Modal>
       <Group position="center">
-        <Button onClick={() => open()}>Add Task</Button>
+        <Button className="add-task-button" onClick={() => open()}>
+          Add Task
+        </Button>
       </Group>
     </>
   );

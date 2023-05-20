@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Modal, Button, Group, TextInput } from "@mantine/core";
+import React from "react";
+import { Modal, Button, TextInput } from "@mantine/core";
 
 const UpdateTask = ({
   tasks,

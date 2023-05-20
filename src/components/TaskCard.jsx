@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { handleToggleFinished } from "../helpers/handleToggleFinished";
 import { MdOutlineDoneOutline, MdOutlineRemoveDone } from "react-icons/md";
 import { IoMdCreate } from "react-icons/io";
 import { AiOutlineDelete } from "react-icons/ai";
 import UpdateTask from "./UpdateTask";
 import { HandleUpdateTaskClick } from "../helpers/handleUpdateTaskClick";
+import { handleRemoveTask } from "../helpers/handleRemoveTask";
 
 const TaskCard = ({
   tasks,
@@ -19,12 +20,6 @@ const TaskCard = ({
   itemId,
   setItemId,
 }) => {
-  const handleRemoveTask = (item) => {
-    const updatedTasks = tasks.filter((task) => task.id !== item.id);
-    setTasks(updatedTasks);
-    setTaskName("");
-  };
-
   return (
     <>
       <UpdateTask
@@ -51,21 +46,20 @@ const TaskCard = ({
           {item.finished ? (
             <MdOutlineRemoveDone
               onClick={() => handleToggleFinished(item.id, setTasks, tasks)}
-              style={{ color: "#eee" }}
             />
           ) : (
             <MdOutlineDoneOutline
               onClick={() => handleToggleFinished(item.id, setTasks, tasks)}
-              style={{ color: "#eee" }}
             />
           )}
           <IoMdCreate
             onClick={() =>
               HandleUpdateTaskClick(open, setTaskName, item, setItemId)
             }
-            style={{ color: "#eee" }}
           />
-          <AiOutlineDelete onClick={() => handleRemoveTask(item)} />
+          <AiOutlineDelete
+            onClick={() => handleRemoveTask(item, setTasks, tasks, setTaskName)}
+          />
         </div>
       </div>
     </>

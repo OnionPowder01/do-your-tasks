@@ -1,3 +1,5 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HeroImageRight } from "./components/HeroSection";
 import Tasks from "./components/Tasks";
 import React, { useState } from "react";
 
@@ -7,20 +9,28 @@ function App() {
   const [columns, setColumns] = useState([]);
 
   return (
-    <main className="App-Container">
-      <div className="layout-container">
+    <Router>
+      <div className="App-Container">
         <div className="tasks-main-container">
-          <Tasks
-            columns={columns}
-            setColumns={setColumns}
-            tasks={tasks}
-            setTasks={setTasks}
-            taskName={taskName}
-            setTaskName={setTaskName}
-          />
+          <Routes>
+            <Route path="/" element={<HeroImageRight />} />
+            <Route
+              path="/task-manager"
+              element={
+                <Tasks
+                  columns={columns}
+                  setColumns={setColumns}
+                  tasks={tasks}
+                  setTasks={setTasks}
+                  taskName={taskName}
+                  setTaskName={setTaskName}
+                />
+              }
+            />
+          </Routes>
         </div>
       </div>
-    </main>
+    </Router>
   );
 }
 
